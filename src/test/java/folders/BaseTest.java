@@ -10,7 +10,7 @@ import org.testng.annotations.BeforeMethod;
 
 import factory.DriverManager;
 import pages.LoginPage;
-import practisegenericMethods.Elements;
+
 
 public class BaseTest {
 	protected WebDriver driver;
