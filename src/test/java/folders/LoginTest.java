@@ -14,9 +14,10 @@ public class LoginTest extends BaseTest {
 		LoginPage loginPage = new LoginPage(driver);
 		HomePage homePage = new HomePage(driver);
 
-		
-		loginPage.login(properties.getProperty("userName"),properties.getProperty("password"),Constants.waitTime);
-		
+		// loginPage.login(properties.getProperty("userName"),properties.getProperty("password"),Constants.waitTime);
 
+		loginPage.checkboxCheck(Constants.waitTime);
+		Thread.sleep(5000);
+		loginPage.uncheckboxCheck(Constants.waitTime);
 	}
 }

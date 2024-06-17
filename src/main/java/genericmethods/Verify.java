@@ -5,48 +5,40 @@ import java.io.File;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.json.StaticInitializerCoercer;
 
 public class Verify {
 
 	public static boolean bstatus;
 
 	public static boolean verifyElementVisible(WebDriver driver, By locator) {
-		try {
-			bstatus = driver.findElement(locator).isDisplayed();
-			System.out.println("Element" + locator + "is visible");
-			return bstatus;
-		} catch (Exception e) {
-			System.out.println("Element" + locator + "is  not visible");
-
+		bstatus = driver.findElement(locator).isDisplayed();
+		if (bstatus) {
+			return true;
 		}
+
+		Messages.errorMsg = locator + "not visible";
+		System.out.println(Messages.errorMsg);
 		return false;
 	}
 
 	public static boolean verifyCheckboxChecked(WebDriver driver, By locator) {
 		bstatus = verifyElementVisible(driver, locator);
-		if (bstatus) {
-			try {
-				return true;
-			} catch (Exception e) {
-				return false;
-			}
+		if (!bstatus) {
+			System.out.println("check box has not be checked because" + Messages.errorMsg);
+			return false;
 		}
 		bstatus = driver.findElement(locator).isSelected();
 		if (bstatus) {
 			try {
 				return true;
 			} catch (Exception e) {
-				System.out.println("unable to select the checkbox" + e);
+				System.out.println(locator + "is not checked");
 			}
 
 		}
 		return false;
 
 	}
-	
-	
-	
 
 	public static boolean verifyElementPresent(WebDriver driver, By locator) {
 		try {

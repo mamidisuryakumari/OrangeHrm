@@ -20,7 +20,8 @@ public class Wait {
 				return true;
 			}
 		} catch (Exception e) {
-			System.out.println("Element " + locator + "is not found  after waiting");
+			Messages.errorMsg = e.getMessage();
+			System.out.println("Element" + locator + "is not found" + Messages.errorMsg);
 		}
 		return false;
 	}
@@ -39,7 +40,6 @@ public class Wait {
 			return false;
 		}
 		return false;
-
 	}
 
 	public static boolean waitForElementClikable(WebDriver driver, By locator, Duration timeout) {

@@ -5,47 +5,56 @@ import java.time.Duration;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
+import net.bytebuddy.asm.Advice.Return;
+
 public class Elements {
 
 	public static boolean bstatus;
 
-	public static boolean selectCheckbox(WebDriver driver, By locator, Duration time) {
-		try {
-			bstatus = Wait.waitForCheckboxChecked(driver, locator, time);
-			if (bstatus) {
+	public static boolean checkCheckbox(WebDriver driver, By locator) {
+		bstatus = Wait.waitForCheckboxChecked(driver, locator, Constants.maxWaitTime);
+		if (bstatus) {
+			try {
+				doClick(driver, locator);
 				return true;
+			} catch (Exception e) {
+				Messages.errorMsg = e.getMessage();
+				System.out.println("unable checking the check box due to" + locator + Messages.errorMsg);
 			}
-		} catch (Exception e) {
-			System.out.println(" Element" + locator + " has not been selected");
 		}
 		return false;
 	}
+	
+	
+	
 
-	public static boolean unSelectCheckBox(WebDriver driver, By locator, Duration time) {
-		try {
-			bstatus = Wait.waitForCheckboxChecked(driver, locator, time);
-			if (bstatus) {
-				driver.findElement(locator).click();
-				System.out.println("The checckbox  has been deselected successfully");
+	public static boolean unSelectCheckBox(WebDriver driver, By locator) {
+		bstatus =checkCheckbox(driver, locator);
+		if(!bstatus) {
+			try {
+				doClick(driver, locator);
 				return true;
 			}
-		} catch (Exception e) {
-			System.out.println("can not unchecck the checkbox ");
+			catch (Exception e) {
+			Messages.errorMsg = e.getMessage();
+			System.out.println("Unchecking the check box due to :" +Messages.errorMsg);
+			}
 		}
 		return false;
+		
 	}
+	
+	// click
 
-	public static boolean doClick(WebDriver driver, By locator, Duration waitTime) {
-		bstatus = Wait.waitForElementPresent(driver, locator, waitTime);
-		try {
-			if (bstatus) {
+	public static boolean doClick(WebDriver driver, By locator) {
+		bstatus = Wait.waitForElementPresent(driver, locator, Constants.maxWaitTime);
+		if (bstatus) {
+			try {
 				driver.findElement(locator).click();
-				System.out.println("The button " + locator + " clicked successfully");
 				return true;
+			} catch (Exception e) {
+				System.out.println("unable to click" + locator + "due to" + Messages.errorMsg);
 			}
-
-		} catch (Exception e) {
-			System.out.println("The button" + locator + " is not clicked successfully");
 		}
 		return false;
 

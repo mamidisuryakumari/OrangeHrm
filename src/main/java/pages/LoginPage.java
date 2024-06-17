@@ -17,15 +17,23 @@ public class LoginPage extends BasePage {
 	private final By passwordFld = By.name("password");
 	private final By submitBtn = By.xpath("//button[@type='submit']");
 	
-
+    private final By checkBox = By.id("hindichbx");
 
 	
-	public HomePage login(String userName,String password,Duration waitTime) {
-		Elements.doSendKeys(driver, userNameFld, password, waitTime);
-		Elements.doSendKeys(driver, passwordFld, password, waitTime);
-		Elements.doClick(driver,submitBtn, waitTime);
-		return new HomePage(driver);
+	//public HomePage login(String userName,String password,Duration waitTime) {
+		//Elements.doSendKeys(driver, userNameFld, password, waitTime);
+		//Elements.doSendKeys(driver, passwordFld, password, waitTime);
+	//	Elements.doClick(driver,submitBtn, waitTime);
+	//	return new HomePage(driver);
+	//}
+    
+    public LoginPage checkboxCheck(Duration waitTime) {
+    	Elements.checkCheckbox(driver, checkBox);
+    	return this;
+    }
+
+	public LoginPage uncheckboxCheck(Duration waitTime) {
+		Elements.unSelectCheckBox(driver, checkBox);
+		return this;
 	}
-
-	
 }
