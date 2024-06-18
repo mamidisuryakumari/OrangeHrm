@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 import base.BasePage;
+import genericmethods.Alert;
 import genericmethods.Constants;
 import genericmethods.Elements;
 
@@ -21,6 +22,10 @@ public class LoginPage extends BasePage {
     private final By checkBox = By.id("hindichbx");
     
     private final By dropDown =By.id("course");
+    
+    private final By alert =By.id("confirmBox");
+		
+	
 
 	
 	//public HomePage login(String userName,String password,Duration waitTime) {
@@ -53,5 +58,11 @@ public class LoginPage extends BasePage {
 	public LoginPage selectDropdownByValue() {
 		Elements.selectDropDownByValue(driver, dropDown,Constants.dropdownValue);
 		return this;
+	}
+	
+	public LoginPage acceptAlert() {
+	Elements.doClick(driver, alert);
+	Alert.acceptAlert(driver, alert);
+	return this;
 	}
 }

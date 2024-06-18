@@ -58,7 +58,16 @@ public class Verify {
 		return false;
 	}
 	
+     //Alert
 	
+	public static boolean verifyAlertPresent(WebDriver driver,By locator) {
+		bstatus = verifyElementVisible(driver, locator);
+		if(bstatus) {
+			
+			return true;
+		}
+		return false;
+	}
 
 	
 

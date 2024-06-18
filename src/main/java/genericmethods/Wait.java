@@ -58,6 +58,15 @@ public class Wait {
 	}
 
 	
+	public static boolean waitforAlertPresent(WebDriver driver,By locator) {
+		new WebDriverWait(driver, Constants.maxWaitTime).until(ExpectedConditions.visibilityOfElementLocated(locator));
+		bstatus =Verify.verifyAlertPresent(driver, locator);
+		if (bstatus) {
+			return true;
+		}
+		return false;
+	}
+	
 	
 	
 }

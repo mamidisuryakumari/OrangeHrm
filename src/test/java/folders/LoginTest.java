@@ -23,6 +23,8 @@ public class LoginTest extends BaseTest {
 	//	loginPage.selectDrodownText();
 	//	loginPage.selectDrodownByIndex();
 		
-		loginPage.selectDropdownByValue();
+	//	loginPage.selectDropdownByValue();
+		
+		loginPage.acceptAlert();
 	}
 }
