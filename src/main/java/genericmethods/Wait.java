@@ -41,27 +41,23 @@ public class Wait {
 		}
 		return false;
 	}
-
-	public static boolean waitForElementClikable(WebDriver driver, By locator, Duration timeout) {
-		try {
-			WebDriverWait wait = new WebDriverWait(driver, timeout);
-			wait.until(ExpectedConditions.elementToBeClickable(locator));
-			System.out.println("Element " + locator + " is clickable");
-			return true;
-		} catch (Exception e) {
-			System.out.println("Element" + locator + " is not clickable after waiting");
+	
+	
+	public static boolean waitforElementPresent(WebDriver driver,By locator) {
+		new WebDriverWait(driver, Constants.maxWaitTime).until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
+		bstatus = Verify.verifyElementPresent(driver, locator,Constants.searchText);
+		if(bstatus) {
+			try {
+				return true;
+			}catch (Exception e) {
+				Messages.errorMsg =e.getMessage();
+				System.out.println("Element not present due to :"+Messages.errorMsg);
+			}
 		}
 		return false;
 	}
 
-	public static boolean waitForElementVisible(WebDriver driver, By locator, Duration timeout) {
-		try {
-			new WebDriverWait(driver, timeout).until(ExpectedConditions.visibilityOfElementLocated(locator));
-
-			return true;
-		} catch (Exception e) {
-			System.out.println("Element" + locator + " is not visible after waiting");
-		}
-		return false;
-	}
+	
+	
+	
 }

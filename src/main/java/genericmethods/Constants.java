@@ -7,5 +7,8 @@ public class Constants {
 	final public static Duration waitTime = Duration.ofSeconds(60);
 	final public static Duration minWaitTime = Duration.ofSeconds(5);
 	final public static Duration maxWaitTime = Duration.ofSeconds(60);
+	public static String searchText = "Java";
+	public static int dropdownIndex=2;
+	public static String dropdownValue = "python";
 
 }

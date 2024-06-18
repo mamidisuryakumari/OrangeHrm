@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 import base.BasePage;
+import genericmethods.Constants;
 import genericmethods.Elements;
 
 public class LoginPage extends BasePage {
@@ -18,6 +19,8 @@ public class LoginPage extends BasePage {
 	private final By submitBtn = By.xpath("//button[@type='submit']");
 	
     private final By checkBox = By.id("hindichbx");
+    
+    private final By dropDown =By.id("course");
 
 	
 	//public HomePage login(String userName,String password,Duration waitTime) {
@@ -34,6 +37,21 @@ public class LoginPage extends BasePage {
 
 	public LoginPage uncheckboxCheck(Duration waitTime) {
 		Elements.unSelectCheckBox(driver, checkBox);
+		return this;
+	}
+	
+	public LoginPage selectDrodownText() {
+		Elements.selectDropDownByvisibleText(driver, dropDown, Constants.searchText);
+		return this;
+	}
+	
+	public LoginPage selectDrodownByIndex() {
+		Elements.selectDropDownByIndex(driver, dropDown,Constants.dropdownIndex);
+		return this;
+	}
+	
+	public LoginPage selectDropdownByValue() {
+		Elements.selectDropDownByValue(driver, dropDown,Constants.dropdownValue);
 		return this;
 	}
 }

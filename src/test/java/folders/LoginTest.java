@@ -16,8 +16,13 @@ public class LoginTest extends BaseTest {
 
 		// loginPage.login(properties.getProperty("userName"),properties.getProperty("password"),Constants.waitTime);
 
-		loginPage.checkboxCheck(Constants.waitTime);
-		Thread.sleep(5000);
-		loginPage.uncheckboxCheck(Constants.waitTime);
+	//	loginPage.checkboxCheck(Constants.waitTime);
+	//	Thread.sleep(5000);
+	//	loginPage.uncheckboxCheck(Constants.waitTime);
+		
+	//	loginPage.selectDrodownText();
+	//	loginPage.selectDrodownByIndex();
+		
+		loginPage.selectDropdownByValue();
 	}
 }
