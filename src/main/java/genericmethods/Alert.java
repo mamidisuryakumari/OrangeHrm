@@ -18,7 +18,7 @@ public class Alert {
 				return true;
 
 			} catch (Exception e) {
-				Messages.errorMsg = "Alert is not accepted" + e.getMessage();
+				Messages.errorMsg = "Unable to accept Alert message due to" + e.getMessage();
 				System.out.println(Messages.errorMsg);
 			}
 		}

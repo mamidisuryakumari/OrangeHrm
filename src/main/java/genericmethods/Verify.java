@@ -63,12 +63,42 @@ public class Verify {
 	public static boolean verifyAlertPresent(WebDriver driver,By locator) {
 		bstatus = verifyElementVisible(driver, locator);
 		if(bstatus) {
-			
+			Elements.doClick(driver, locator);			
 			return true;
 		}
+		System.out.println("Alert is not presenent");
+		return false;
+	}
+	
+	
+	public static boolean verifyWindowPresent(WebDriver driver,By locator) {
+		bstatus = verifyElementVisible(driver, locator);
+		if(bstatus) {
+			Elements.doClick(driver, locator);
+			return true;
+		}
+		System.out.println("Window is not present");
 		return false;
 	}
 
-	
+	public static Boolean verifyFileExist(WebDriver driver,By locator, String filepath)
+	{
+		bstatus= verifyElementVisible(driver, locator);
+		{
+			Elements.doClick(driver, locator);
+			File file = new File(filepath);
+			if (file.exists()) {
+				try {
+					return true;
+				} catch (Exception e) {
+					System.out.println("File not found ex :"+e.getMessage());
+				}
+				
+			}
+			
+		}
+		
+		return false;
+	}
 
 }

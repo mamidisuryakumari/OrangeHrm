@@ -25,6 +25,12 @@ public class LoginTest extends BaseTest {
 		
 	//	loginPage.selectDropdownByValue();
 		
-		loginPage.acceptAlert();
+	//	loginPage.acceptAlert();
+	//	loginPage.windowHandle();
+		
+		loginPage.uploadFile();
+		
+		
+		
 	}
 }

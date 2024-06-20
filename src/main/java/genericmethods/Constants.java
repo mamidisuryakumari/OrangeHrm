@@ -10,5 +10,7 @@ public class Constants {
 	public static String searchText = "Java";
 	public static int dropdownIndex=2;
 	public static String dropdownValue = "python";
+	public static String firstName = "kumar";
+	public static String filePath ="C:\\Users\\kumar\\OneDrive\\Pictures\\peakpx123.jpg";
 
 }

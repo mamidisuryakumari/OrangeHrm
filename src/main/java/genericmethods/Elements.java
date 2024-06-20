@@ -47,7 +47,7 @@ public class Elements {
 	// click
 
 	public static boolean doClick(WebDriver driver, By locator) {
-		bstatus = Wait.waitForElementPresent(driver, locator, Constants.maxWaitTime);
+		bstatus = Wait.waitForElementVisible(driver, locator);
 		if (bstatus) {
 			try {
 				driver.findElement(locator).click();
@@ -60,8 +60,8 @@ public class Elements {
 
 	}
 
-	public static boolean doSendKeys(WebDriver driver, By locator, String value, Duration waitTime) {
-		bstatus = Wait.waitForElementPresent(driver, locator, waitTime);
+	public static boolean doSendKeys(WebDriver driver, By locator, String value) {
+		bstatus = Wait.waitForElementVisible(driver, locator);
 		try {
 			if (bstatus) {
 				driver.findElement(locator).sendKeys(value);

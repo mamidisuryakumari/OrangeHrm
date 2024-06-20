@@ -7,14 +7,16 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.google.common.annotations.VisibleForTesting;
+
 public class Wait {
 
 	private static boolean bstatus;
 	private WebDriverWait wait;
 
-	public static boolean waitForElementPresent(WebDriver driver, By locator, Duration timeout) {
+	public static boolean waitForElementVisible(WebDriver driver, By locator) {
 		try {
-			new WebDriverWait(driver, timeout).until(ExpectedConditions.presenceOfElementLocated(locator));
+			new WebDriverWait(driver,Constants.maxWaitTime).until(ExpectedConditions.visibilityOfElementLocated(locator));
 			bstatus = Verify.verifyElementVisible(driver, locator);
 			if (bstatus) {
 				return true;
@@ -62,11 +64,46 @@ public class Wait {
 		new WebDriverWait(driver, Constants.maxWaitTime).until(ExpectedConditions.visibilityOfElementLocated(locator));
 		bstatus =Verify.verifyAlertPresent(driver, locator);
 		if (bstatus) {
-			return true;
+			
+			try {
+				return true;
+				
+			} catch (Exception e) {
+				System.out.println("Unable to get the alert popup due to :"+e.getMessage());
+			}
+			
 		}
 		return false;
 	}
 	
+	public static boolean waitforWindowPresent(WebDriver driver,By locator) {
+		new WebDriverWait(driver,Constants.maxWaitTime).until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
+		bstatus =Verify.verifyWindowPresent(driver, locator);
+		if(bstatus) {
+			try {
+				return true;
+			}catch (Exception e) {
+				System.out.println("Unable to get the window due to"+e.getMessage());
+			}
+		}
+		return false;
+	}
 	
+	public static Boolean waitForFileExist(WebDriver driver,By locator)
+	{
+		new WebDriverWait(driver, Constants.maxWaitTime).until(ExpectedConditions.visibilityOfElementLocated(locator));
+		bstatus=  Verify.verifyFileExist(driver, locator, Constants.filePath);
+		if(bstatus)
+		{
+			try {
+				return true;
+				
+			} catch (Exception e) {
+				System.out.println("Exception occured when fecthing the file: "+e.getMessage());
+			}
+		}
+		
+		return false;
+	}
 	
 }

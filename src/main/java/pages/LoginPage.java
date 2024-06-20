@@ -8,6 +8,10 @@ import base.BasePage;
 import genericmethods.Alert;
 import genericmethods.Constants;
 import genericmethods.Elements;
+import genericmethods.File;
+import genericmethods.Verify;
+import genericmethods.Wait;
+import genericmethods.Window;
 
 public class LoginPage extends BasePage {
 	
@@ -23,8 +27,12 @@ public class LoginPage extends BasePage {
     
     private final By dropDown =By.id("course");
     
-    private final By alert =By.id("confirmBox");
+    private final By alertConfirmButton =By.id("confirmBox");
+    
+    private final By newWindowButton =By.id("newWindowBtn");
+		private final By firstNameField =By.id("firstName");
 		
+		private final By uploadFile = By.id("uploadfile");
 	
 
 	
@@ -61,8 +69,19 @@ public class LoginPage extends BasePage {
 	}
 	
 	public LoginPage acceptAlert() {
-	Elements.doClick(driver, alert);
-	Alert.acceptAlert(driver, alert);
+	Alert.acceptAlert(driver, alertConfirmButton);
 	return this;
+	}
+	
+	public LoginPage windowHandle() {
+		Window.windowHandle(driver,newWindowButton);
+		Elements.doSendKeys(driver, firstNameField, Constants.firstName);
+		return this;
+	}
+	
+	public LoginPage uploadFile() {
+		File.fileUpload(driver, uploadFile);
+		return this;
+		
 	}
 }
