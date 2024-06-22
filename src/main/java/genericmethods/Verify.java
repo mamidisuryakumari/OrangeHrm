@@ -1,6 +1,7 @@
 package genericmethods;
 
 import java.io.File;
+import java.util.Calendar;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -57,23 +58,22 @@ public class Verify {
 		System.out.println(Messages.errorMsg);
 		return false;
 	}
-	
-     //Alert
-	
-	public static boolean verifyAlertPresent(WebDriver driver,By locator) {
+
+	// Alert
+
+	public static boolean verifyAlertPresent(WebDriver driver, By locator) {
 		bstatus = verifyElementVisible(driver, locator);
-		if(bstatus) {
-			Elements.doClick(driver, locator);			
+		if (bstatus) {
+			Elements.doClick(driver, locator);
 			return true;
 		}
 		System.out.println("Alert is not presenent");
 		return false;
 	}
-	
-	
-	public static boolean verifyWindowPresent(WebDriver driver,By locator) {
+
+	public static boolean verifyWindowPresent(WebDriver driver, By locator) {
 		bstatus = verifyElementVisible(driver, locator);
-		if(bstatus) {
+		if (bstatus) {
 			Elements.doClick(driver, locator);
 			return true;
 		}
@@ -81,9 +81,8 @@ public class Verify {
 		return false;
 	}
 
-	public static Boolean verifyFileExist(WebDriver driver,By locator, String filepath)
-	{
-		bstatus= verifyElementVisible(driver, locator);
+	public static Boolean verifyFileExist(WebDriver driver, By locator, String filepath) {
+		bstatus = verifyElementVisible(driver, locator);
 		{
 			Elements.doClick(driver, locator);
 			File file = new File(filepath);
@@ -91,14 +90,42 @@ public class Verify {
 				try {
 					return true;
 				} catch (Exception e) {
-					System.out.println("File not found ex :"+e.getMessage());
+					System.out.println("File not found ex :" + e.getMessage());
 				}
-				
 			}
-			
 		}
-		
+
 		return false;
 	}
 
+	public static boolean verifyTablePresent(WebDriver driver, By locator) {
+
+		String rowXpath = "//*[@id=\"customers\"]/tbody/tr";
+		String colXpath = "//*[@id=\"customers\"]/tbody/th";
+		List<WebElement> rowsElements = driver.findElements(By.xpath(rowXpath));
+		List<WebElement> colsElements = driver.findElements(By.xpath(colXpath));
+
+		bstatus = verifyElementVisible(driver, locator);
+		if (bstatus) {
+
+			for (int row = 0; row < rowsElements.size() ; row++) {
+				for (int col = 1; col <= colsElements.size() ; col++) {
+					System.out.print(driver.findElement(By.xpath("//*[@id=\\\"customers\\\"]/tbody/tr[" +row+ "]/td[" +col+ "]")).getText()
+					+" ");
+
+				}
+				System.out.println();
+			}
+
+			/*
+			 * List<WebElement> table = driver.findElements(locator); for(WebElement
+			 * element:table) { String value =element.getText(); System.out.println(value);
+			 * }
+			 * 
+			 * return true;
+			 */
+		}
+		return false;
+
+	}
 }

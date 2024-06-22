@@ -106,4 +106,17 @@ public class Wait {
 		return false;
 	}
 	
-}
+	public static boolean waitForTablePresent(WebDriver driver,By locator) {
+		new WebDriverWait(driver, Constants.maxWaitTime).until(ExpectedConditions.visibilityOfElementLocated(locator));
+		bstatus = Verify.verifyTablePresent(driver, locator);
+		if(bstatus) {
+			try {
+				return true;
+			}catch (Exception e) {
+				System.out.println("Exception occured when fecthing the table: "+e.getMessage());
+			}
+			}
+		return false;
+		}
+	}
+	
